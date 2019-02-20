@@ -64,8 +64,28 @@
                                         <i class="material-icons">contact_mail</i> Contacto
                                     </a>
                                 </li>	
+                                <li>
+                                    <a href="{{route('home')}}" >
+                                        <i class="material-icons">fingerprint</i> Volver a mi panel
+                                    </a>
+                                </li>
                             </ul>
+
                             <ul class="button-group float-right">
+                                <li>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">message</i> Mensajes</a>
+
+                                        <ul class="dropdown-menu">
+                                            
+                                            <li><a href="{{route('user.send')}}">Enviar Mensajes</a></li>
+                                            <li><a href="{{route('user.messages',['id' => Auth::user() ->id])}}">Ver mensajes enviados</a></li>
+                                            <li><a href="">Mensajes recibidos</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </li>
+
                                 <li>
                                     <a href="{{route('config')}}">
                                         <i class="material-icons"></i> Perfil
@@ -92,8 +112,8 @@
                 </header> 
                 <!-- /Menú  -->
 
-                    @yield('content')
-                
+                @yield('content')
+
 
 
             </div>
@@ -102,6 +122,9 @@
         </div>  
     </body>
     <!--   JS   -->
+    
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/material.min.js')}}"></script>
     <script src="{{asset('js/material-kit.js')}}" type="text/javascript"></script>

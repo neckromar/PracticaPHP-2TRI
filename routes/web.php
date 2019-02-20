@@ -24,6 +24,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/configuracion', 'UserController@config')->name('config');
+Route::get('/configuration', 'UserController@config')->name('config');
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
 Route::post('/user/update', 'UserController@update')->name('user.update');
+Route::get('/user/send', 'UserController@send')->name('user.send');
+Route::get('/user/messages/{id}', 'UserController@messages')->name('user.messages');
+
+
+
+Route::post('/messages/save', 'MensajesController@save')->name('messages.save');

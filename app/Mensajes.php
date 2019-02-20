@@ -12,14 +12,10 @@ class Mensajes extends Model
 
     //Establecemoslatablaasociadaalmodelo
     protected $table='mensajes';
-    
-    protected $fillable = [
-        'id_mensaje', 'asunto','destinatario', 'autor'
-    ];
 
     
      public function user(){
-    //EstemétododevuelveelobjetoUsuarioquehacreadolaimagen
+    //Este método devuelve el objeto Usuario que ha creado el mensaje
     return$this->belongsTo('App\User','id');
     }
 }

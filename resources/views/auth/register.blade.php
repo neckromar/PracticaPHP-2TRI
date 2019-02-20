@@ -32,6 +32,34 @@
 
                                 <div class="input-group">
                                     <span class="input-group-addon">
+                                        <i class="material-icons">account_box</i>
+                                    </span>
+                                    
+                                        <input id="name" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus placeholder="Inserte su apellido...">
+
+                                        @if ($errors->has('surname'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('surname') }}</strong>
+                                        </span>
+                                        @endif
+                                    
+                                </div>
+
+                                <div class="input-group">
+                                   <span class="input-group-addon">
+                                        <i class="material-icons">assignment_ind</i>
+                                    </span>
+                                        <input id="name" type="text" class="form-control{{ $errors->has('nick') ? ' is-invalid' : '' }}" name="nick" value="{{ old('nick') }}" required autofocus placeholder="Inserte su nick...">
+
+                                        @if ($errors->has('nick'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('nick') }}</strong>
+                                        </span>
+                                        @endif
+                                </div>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">
                                         <i class="material-icons">email</i>
                                     </span>
                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="Inserte email...">
@@ -65,11 +93,11 @@
                                 </div>
 
                             </div>
-                            
+
                             <div class="footer text-center" style="min-height: 100px;">
                                 <button type="submit" class="btn btn-simple btn-primary btn-lg" >Registrarse <i class="material-icons">add_box</i></button>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>

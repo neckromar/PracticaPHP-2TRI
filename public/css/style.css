@@ -5,12 +5,20 @@
 * {margin: 0;
 padding: 0;}
 
-.container .configuracion
+.configuracion
 {
-    padding-top: 20%;
+    padding-top: 15%;
     margin-left: 20%;
 }
-
+.comments
+{
+    width: 70%;
+    padding-top: 15%;
+    margin-left: 20%;
+}
+.comments textarea{
+    height: 20%;
+}
 form .avatar{
     width: 200px;
     margin-bottom: 15px;
@@ -424,7 +432,28 @@ i.material-icons{vertical-align: middle; margin-right: 5px;}
   letter-spacing: 1px;
   
 }
-
+.dropdown-menu .mensajes{
+    position:absolute;
+    top:100%;left:0;
+    z-index:1000;
+    display:none;
+    float:left;
+    min-width:160px;
+    padding:5px 0;
+    margin:2px 0 0;
+    list-style:none;
+    font-size:14px;
+    text-align:left;
+    text-color:#1f0c0c;
+    background-color:#1f0c0c;
+    border:1px solid #ccc;
+    border:1px solid rgba(0,0,0,0.15);
+    border-radius:4px;
+    -webkit-box-shadow:0 6px 12px rgba(0,0,0,0.175);
+    box-shadow:0 6px 12px rgba(0,0,0,0.175);
+    -webkit-background-clip:padding-box;
+    background-clip:padding-box
+}
 .theme-main-header .button-group li a:hover {
   color: #f7f3f3;
 }
