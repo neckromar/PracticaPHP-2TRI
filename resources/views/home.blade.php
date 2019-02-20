@@ -1,23 +1,18 @@
 @extends('layouts.app2')
-
+@section('title','Panel de control')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Alumnos</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    Felicidades sd
+<div style="padding-top: 300px;">
+    <div class="what-we-do bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    Welcome Again!! {{ Auth::user()->name}}
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+
+    @endsection

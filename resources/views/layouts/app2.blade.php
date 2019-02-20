@@ -1,80 +1,111 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <title>IES San Sebastian - @yield('title')</title>
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <!-- Style -->
+        <link href="{{asset('css/minificado/bootstrap.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/minificado/ingreso.min.css')}}" rel="stylesheet"/>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
 
-                    </ul>
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" sizes="56x56" href="images/fav-icon/icon.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+        <!-- Vendor Styles -->
+
+        <link rel="stylesheet" href="{{asset('vendor/bootstrap/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{asset('vendor/Camera-master/css/camera.css')}}">
+        <link rel="stylesheet" href="{{asset('vendor/owl-carousel/owl.carousel.css')}}">
+        <link rel="stylesheet" href="{{asset('vendor/owl-carousel/owl.theme.css')}}">
+        <link rel="stylesheet" href="{{asset('vendor/WOW-master/css/libs/animate.css')}}">
+        <link rel="stylesheet" href="{{asset('vendor/fancybox/dist/jquery.fancybox.min.css')}}">
+
+
+        <!-- Style -->
+        <link rel="stylesheet" href="{{asset('fonts/font-awesome/css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{asset('fonts/icon/font/font/flaticon.css')}}">
+        <link rel="stylesheet" href="{{asset('fonts/icon/font/2/flaticon.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
+
+
+    </head>
+
+    <body class="pagina-ingreso">
+        <div class="main-page-wrapper home-page-two">
+            <div class="html-top-content">
+
+                <!-- Menú -->
+                <header class="theme-main-header contact">
+                    <div class="container">
+                        <div class="menu-wrapper clearfix ">
+
+                            <ul class="button-group float-left">
+                                <li>
+                                    <a href="{{route('index')}}" >
+                                        <i class="material-icons">home</i> Inicio
+                                    </a>
                                 </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a href="{{route('contact')}}">
+                                        <i class="material-icons">contact_mail</i> Contacto
+                                    </a>
+                                </li>	
+                            </ul>
+                            <ul class="button-group float-right">
+                                <li>
+                                    <a href="{{route('config')}}">
+                                        <i class="material-icons"></i> Perfil
+                                    </a>
+                                </li>	
+                                <li>
+                                    <!--<a href="{{route('login')}}" > -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                               document.getElementById('logout-form').submit();">
+                                        <i class="material-icons">exit_to_app</i> Salir
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
                                         @csrf
                                     </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-</body>
+                                    </a>
+                                </li>
+
+                            </ul>						
+                        </div> 
+                    </div> 
+                </header> 
+                <!-- /Menú  -->
+
+                    @yield('content')
+                
+
+
+            </div>
+
+
+        </div>  
+    </body>
+    <!--   JS   -->
+    <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/material.min.js')}}"></script>
+    <script src="{{asset('js/material-kit.js')}}" type="text/javascript"></script>
+
 </html>
+
+

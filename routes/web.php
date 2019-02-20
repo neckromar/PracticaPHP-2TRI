@@ -20,11 +20,10 @@ Route::get('/contacto',function(){
 
 
 
-
-
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/configuracion', 'UserController@config')->name('config');
+Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
+Route::post('/user/update', 'UserController@update')->name('user.update');

@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','La comunidad mas grande de adoption')
+@section('title','Una comunidad de alumnos')
 
 @section('content')
 
@@ -11,7 +11,7 @@
                 <div class="container">
 
                     <div class="image-wrapper wow fadeInUp animated" data-wow-delay="0.75s">
-                        <img src="" width="200%" alt="">
+                       
                     </div>
 
                     <h1 class="wow fadeInUp animated">Estar en contacto <br>siempre ayuda.</h1>
@@ -25,7 +25,7 @@
                     </div>
                     -->
                     <div class="image-wrapper wow fadeInUp animated" data-wow-delay="0.75s">
-                        <img src="{{asset('images/home/principal.jpg')}}" alt="">
+                        <img src="{{asset('images/home/principal.jpg')}}" style="width: 70%; margin-top: 10%;" alt="">
                     </div>
                 </div>
             </div> 
@@ -124,7 +124,7 @@
     <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-6">
             <div class="single-blog">
-                <div class="image"><img src="{{asset('images/blog/laravel.png')}}" style="height: 50%;" alt=""></div>
+                <div class="image"><img src="{{asset('images/blog/laravel.png')}}" style="height: 370px;" alt=""></div>
                 <div class="text">
                     <h5><a  href="https://www.udemy.com/curso-de-laravel-5-desde-cero-apis-restful-y-webapps-angular/?couponCode=LARA-ACADEMY" target="_blank" class="tran3s">Curso Laravel por Victor Robles</a></h5>
                     <p>Curso desde nivel principiante a experto en Laravel.</p>
@@ -133,18 +133,18 @@
         </div>
         <div class="col-lg-4 col-md-4 col-xs-6">
             <div class="single-blog">
-                <div class="image"><img src="{{asset('images/blog/js.png')}}" style="height:  370px;" target="_blank" alt=""></div>
+                <div class="image"><img src="{{asset('images/blog/js.png')}}" style="height:  370px;"  alt=""></div>
                 <div class="text">
-                    <h5><a href="https://www.udemy.com/master-en-javascript-aprender-js-jquery-angular-nodejs-y-mas/?couponCode=MASTER-ACADEMY" class="tran3s">Master en JavaScript. Victor Robles</a></h5>
+                    <h5><a href="https://www.udemy.com/master-en-javascript-aprender-js-jquery-angular-nodejs-y-mas/?couponCode=MASTER-ACADEMY" target="_blank" class="tran3s">Master en JavaScript. Victor Robles</a></h5>
                     <p>Aprende a programar desde cero y desarrollo web con JavaScript, jQuery, JSON, TypeScript, Angular, Node, MEAN, +30 horas.</p>
                 </div>
             </div> 
         </div>
         <div class="col-lg-4 col-md-4 col-xs-6">
             <div class="single-blog">
-                <div class="image"><img src="{{asset('images/blog/pwa.png')}}" style="height:  370px;" target="_blank" alt=""></div>
+                <div class="image"><img src="{{asset('images/blog/pwa.png')}}" style="height:  370px;"  alt=""></div>
                 <div class="text">
-                    <h5><a href="https://www.udemy.com/curso-de-laravel-5-desde-cero-apis-restful-y-webapps-angular/?couponCode=LARA-ACADEMY" class="tran3s">Curso de Apps Web Progresivas PWA y Responsive + Angular PWA</a></h5>
+                    <h5><a href="https://www.udemy.com/curso-de-laravel-5-desde-cero-apis-restful-y-webapps-angular/?couponCode=LARA-ACADEMY" target="_blank" class="tran3s">Curso de Apps Web Progresivas PWA y Responsive + Angular PWA</a></h5>
                     <p>Aprende a desarrollar Aplicaciones Web Progresivas (PWA) y a crear sitios web Responsive adaptables a cualquier móvil.</p>
                 </div>
             </div>

@@ -7,7 +7,7 @@
 
         <!-- Contenido adaptable -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pets - @yield('title')</title>
+        <title>IES San Sebastian - @yield('title')</title>
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" sizes="56x56" href="{{asset('images/fav-icon/icon.png')}}">
@@ -71,6 +71,11 @@
                                     </a>
                                 </li>
                                 @else
+                                <li>
+                                    <a href="{{route('home')}}" >
+                                        <i class="material-icons">fingerprint</i> Volver a mi panel
+                                    </a>
+                                </li>
                                 <li>
                                     <!--<a href="{{route('login')}}" > -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
