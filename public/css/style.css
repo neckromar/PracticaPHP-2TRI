@@ -5,9 +5,14 @@
 * {margin: 0;
 padding: 0;}
 
+.container .configuracion
+{
+    padding-top: 20%;
+    margin-left: 20%;
+}
 
 form .avatar{
-    width: 75px;
+    width: 200px;
     margin-bottom: 15px;
 }
 
@@ -58,7 +63,10 @@ form .avatar{
 .image-container img{
     width: 100%;
 }
-
+.card-header .centrado
+{
+    text-align: center;
+}
 .image-detail{
     max-height: 500px;
 }
@@ -124,6 +132,9 @@ form .avatar{
     padding-left: 0px;
 }
 
+.alinear{
+ margin-left: 32%;
+}
 
 
 .scroll-top {
