@@ -21,7 +21,7 @@
 
 
         <!-- Favicon -->
-        <link rel="icon" type="image/png" sizes="56x56" href="images/fav-icon/icon.png">
+        <link rel="icon" type="image/png" sizes="56x56" href="{{asset('images/fav-icon/icon.png')}}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
         <!-- Vendor Styles -->
@@ -77,11 +77,11 @@
                                         <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">message</i> Mensajes</a>
 
                                         <ul class="dropdown-menu">
-                                            
+
                                             <li><a href="{{route('user.send')}}">Enviar Mensajes</a></li>
                                             <li><a href="{{route('user.messages',['id' => Auth::user() ->id])}}">Ver mensajes enviados</a></li>
-                                            <li><a href="">Mensajes recibidos</a></li>
-                                            
+                                            <li><a href="{{route('user.recived',['id' => Auth::user() ->id])}}">Mensajes recibidos ({{count(Auth::user()->mensajes)}})</a></li>
+
                                         </ul>
                                     </div>
                                 </li>
@@ -122,10 +122,12 @@
         </div>  
     </body>
     <!--   JS   -->
+
     
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
+     <script src="{{asset('js/main.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/material.min.js')}}"></script>
     <script src="{{asset('js/material-kit.js')}}" type="text/javascript"></script>
 

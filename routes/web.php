@@ -27,9 +27,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/configuration', 'UserController@config')->name('config');
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
 Route::post('/user/update', 'UserController@update')->name('user.update');
-Route::get('/user/send', 'UserController@send')->name('user.send');
+Route::get('/user/send/{search?}', 'UserController@send')->name('user.send');
 Route::get('/user/messages/{id}', 'UserController@messages')->name('user.messages');
-
+Route::get('/perfil/{id}', 'UserController@profile')->name('profile');
+Route::get('/messages/recived/{id}', 'UserController@recived')->name('user.recived');
 
 
 Route::post('/messages/save', 'MensajesController@save')->name('messages.save');
+Route::get('/messages/delete/{id_mensaje}', 'MensajesController@delete')->name('message.delete');
+Route::get('/messages/{id}', 'MensajesController@leido');

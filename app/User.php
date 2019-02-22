@@ -31,6 +31,7 @@ class User extends Authenticatable
     
     public function mensajes() 
     {
-        return $this->hasMany('App\Mensajes');
+        return $this->hasMany('App\Mensajes','id_destinatario');
     }
+   
 }

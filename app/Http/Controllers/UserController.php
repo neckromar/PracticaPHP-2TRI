@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\User;
 use App\Mensajes;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller {
 
@@ -20,19 +21,58 @@ class UserController extends Controller {
     public function config() {
         return view('user.config');
     }
-    
-     public function send() {
-         
-         $totusers = User::all();
-        return view('user.message',['totusers' => $totusers]);
+
+    public function send($search = null) {
+
+        if (!empty($search)) {
+            $totusers = User::where('nick', $search)->get();
+
+            return view('user.messageview', ['totusers' => $totusers]);
+        } else {
+
+            $totusers = User::all();
+            return view('user.messageview', ['totusers' => $totusers]);
+        }
     }
-    
+
     public function messages($id) {
-        
+
         $user = \Auth::user();
-        $mensajes = Mensajes::where('id_autor',$user ->id)->get();
         
-        return view('user.bandeja',['mensajes' => $mensajes]);
+        if ($user->id == $id) {
+            $mensajes = Mensajes::where('id_autor', $user->id)->get();
+
+            return view('user.bandeja', ['mensajes' => $mensajes]);
+        } else {
+            $mensajes = Mensajes::where('id_autor', $user->id)->get();
+
+            return redirect()->route('user.messages',$user->id)
+                            ->with(['error' => 'No puedes acceder a los mensajes de otro usuario']);
+        }
+    }
+
+    public function recived($id) {
+
+        $user = \Auth::user();
+
+        $mensajes = Mensajes::where('id_destinatario', $user->id)->get();
+
+        return view('user.recived', ['mensajes' => $mensajes]);
+    }
+
+    public function profile($id) {
+        $user = User::find($id);
+        
+        if($user != NULL)
+        {
+             return view('user.profile', [
+            'user' => $user
+        ]);
+        }
+        else{
+              return redirect()->route('profile',\Auth::user()->id);
+        }
+       
     }
 
     public function update(Request $request) {

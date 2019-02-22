@@ -5,8 +5,8 @@
 <div class="clearfix"></div>
 
 <div class="comments" >
-    @include('includes.message')
-    <h2> Send Message</h2>
+
+    <h2 class="centrarh2"> Send Message </h2>
     <hr>
 
     <form method="POST" action="{{route('messages.save')}}">
@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <select name="destinatario" >
                     @foreach($totusers as $user)
-                    <option value="{{ $user->name }}">{{ $user->name }}</option>
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
 
                 </select>
@@ -37,14 +37,18 @@
                 @endif
             </div>
         </div>
-        <p>
-            <textarea class="form-control {{$errors->has('contenido') ? 'is-invalid' : ''}}" name="contenido" ></textarea>
-            @if($errors->has('content'))
-            <span  class="invalid-feedback" role='alert'>
-                <strong>{{ $errors->first('contenido')}} </strong>
-            </span>
-            @endif
-        </p>
+        <div class="form-group row">
+            <label for="contenido" class="col-md-4 col-form-label text-md-right">{{ __('Contenido') }}</label>
+            <p>
+
+                <textarea class="form-control {{$errors->has('contenido') ? 'is-invalid' : ''}}" name="contenido" required ></textarea>
+                @if($errors->has('content'))
+                <span  class="invalid-feedback" role='alert'>
+                    <strong>{{ $errors->first('contenido')}} </strong>
+                </span>
+                @endif
+            </p>
+        </div>
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4 alinear">
 
