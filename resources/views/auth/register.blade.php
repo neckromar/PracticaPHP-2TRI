@@ -35,7 +35,7 @@
                                         <i class="material-icons">account_box</i>
                                     </span>
                                     
-                                        <input id="name" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus placeholder="Inserte su apellido...">
+                                        <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus placeholder="Inserte su apellido...">
 
                                         @if ($errors->has('surname'))
                                         <span class="invalid-feedback" role="alert">
@@ -45,19 +45,22 @@
                                     
                                 </div>
 
-                                <div class="input-group">
-                                   <span class="input-group-addon">
-                                        <i class="material-icons">assignment_ind</i>
+                                
+                                 <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">mobile_friendly</i>
                                     </span>
-                                        <input id="name" type="text" class="form-control{{ $errors->has('nick') ? ' is-invalid' : '' }}" name="nick" value="{{ old('nick') }}" required autofocus placeholder="Inserte su nick...">
+                                    
+                                        <input id="telefono" type="number" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}" required autofocus placeholder="Inserte su telefono...">
 
-                                        @if ($errors->has('nick'))
+                                        @if ($errors->has('telefono'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('nick') }}</strong>
+                                            <strong>{{ $errors->first('telefono') }}</strong>
                                         </span>
                                         @endif
+                                    
                                 </div>
-
+                                
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">email</i>

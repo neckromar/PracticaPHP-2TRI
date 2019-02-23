@@ -4,7 +4,7 @@
 
 <div class="clearfix"></div>
 
-<div class="comments" >
+<div class="pricing-plan-section" >
 
     <h2 class="centrarh2"> Send Message </h2>
     <hr>
@@ -18,7 +18,9 @@
             <div class="col-md-6">
                 <select name="destinatario" >
                     @foreach($totusers as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @if($user->id != Auth::user()->id)
+                    <option value="{{ $user->id }}">{{ $user->name .' '. $user->surname }}</option>
+                    @endif
                     @endforeach
 
                 </select>
@@ -41,7 +43,7 @@
             <label for="contenido" class="col-md-4 col-form-label text-md-right">{{ __('Contenido') }}</label>
             <p>
 
-                <textarea class="form-control {{$errors->has('contenido') ? 'is-invalid' : ''}}" name="contenido" required ></textarea>
+                <textarea style="height: 130px;" class="form-control{{$errors->has('contenido') ? 'is-invalid' : ''}} " name="contenido" required ></textarea>
                 @if($errors->has('content'))
                 <span  class="invalid-feedback" role='alert'>
                     <strong>{{ $errors->first('contenido')}} </strong>

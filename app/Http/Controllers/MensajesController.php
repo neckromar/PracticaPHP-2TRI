@@ -67,7 +67,7 @@ class MensajesController extends Controller {
         $delet = Mensajes::where('id', $id)->first();
 
         //Comprobar si soy el dueño del comentario o de la publicacion
-        if ($user && ($delet->id_autor == $user->id)) {
+        if ($user && ($delet->id_autor == $user->id) || $delet->id_destinatario == $user->id ) {
 
             //conseguir los datos del objeto del comentario
             $delet->delete();

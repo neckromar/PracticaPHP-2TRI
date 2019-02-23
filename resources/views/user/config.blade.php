@@ -27,13 +27,14 @@
                                 @endif
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="surname" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ Auth::user()->surname }}" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('surname'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('surname') }}</strong>
                                 </span>
@@ -41,19 +42,18 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="nick" class="col-md-4 col-form-label text-md-right">{{ __('Nick') }}</label>
+                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="nick" class="form-control{{ $errors->has('nick') ? ' is-invalid' : '' }}" name="nick" value="{{ Auth::user()->nick }}" required>
+                                <input id="telefono" type="text" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ Auth::user()->telefono }}" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('telefono'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('nick') }}</strong>
+                                    <strong>{{ $errors->first('telefono') }}</strong>
                                 </span>
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

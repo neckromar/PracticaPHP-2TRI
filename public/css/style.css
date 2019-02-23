@@ -1,7 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Poppins:300,400,500,600');
 
-
+.alineartexto{
+     margin: 20px;
+    margin-top:25px;
+    margin-left:10px;
+}
 * {margin: 0;
 padding: 0;}
 .alinearcentro{
@@ -14,12 +18,16 @@ padding: 0;}
 }
 
 .tamañotd{
-    width: 10%;
+    width: 7%;
+    text-align: center;
+}
+.tamañotdimage{
+    margin-top: 10px;
+    width: 20%;
 }
 .comments
 {
-    width: 70%;
-    padding-top: 15%;
+    width: 50%;
     margin-left: 20%;
 }
 .comments textarea{
@@ -28,6 +36,19 @@ padding: 0;}
 form .avatar{
     width: 200px;
     margin-bottom: 15px;
+}
+.textomedio{
+    margin-top: 20px;
+    padding:0px;
+}
+.avatartd{
+    width: 75px;
+    height: 75px;
+    float: left;
+    border-radius: 900px;
+    overflow: hidden;
+    margin-left:20px;
+    margin-top:5px;
 }
 .centrarh2{
     text-align: center;
@@ -123,6 +144,7 @@ form .avatar{
 .profile-user{
     height: 200px;
     margin-bottom:40px;
+    margin-left: 15%;
 }
 
 .profile-user .container-avatar{
@@ -942,7 +964,7 @@ i.material-icons{vertical-align: middle; margin-right: 5px;}
   top:-7px;
 }
 /*-------------------------- Pricing Plan Section ----------------------*/
-.pricing-plan-section {padding: 250px 0 100px 0;}
+.pricing-plan-section {margin-left: 12%; width: 80%; padding: 250px 0 100px 0;}
 .pricing-plan-section .theme-title-one p {margin: 35px 0 0 0;}
 .pricing-plan-section .nav-tabs {border: none;margin-top: 46px;}
 .pricing-plan-section .nav-tabs > li {margin: 0;}
@@ -970,7 +992,7 @@ i.material-icons{vertical-align: middle; margin-right: 5px;}
 }
 .pricing-plan-section .tab-content .table-content {position: relative;}
 .pricing-plan-section .tab-content .table-content .price-table {
-  width: 370px;
+  width: 80%;
   position: absolute;
   left: 0px;
   top: 0px;

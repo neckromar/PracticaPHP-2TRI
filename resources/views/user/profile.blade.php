@@ -1,9 +1,10 @@
 @extends('layouts.app2')
 
 @section('content')
-<div class="comments">
+<div class="pricing-plan-section">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+
+        <div class="col-md-6">
             <div class="profile-user">
 
                 @if($user->image_path)
@@ -20,11 +21,9 @@
                 <hr>
             </div>
             <div class="clearfix"></div>
-           
-            <a type="button" href=" {{route('user.send',['nick' => $user->nick])}}" >Enviar mensaje</a>
-            
-        </div>
 
+        </div>
+        <a type="button" class="btn btn-simple btn-primary btn-lg" href=" {{route('user.send',['nick' => $user->nick])}}" >Enviar mensaje</a>
     </div>
 </div>
 @endsection

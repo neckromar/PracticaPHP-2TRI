@@ -83,19 +83,20 @@ class UserController extends Controller {
         $validate = $this->validate($request, [
             'name' => 'required|string|max:50',
             'surname' => 'required|string|max:50',
-            'nick' => 'required|string|max:35',
+            'telefono' => 'required|string|max:9',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'image_path' => 'image'
         ]);
 
         $name = $request->input('name');
         $surname = $request->input('surname');
-        $nick = $request->input('nick');
+        $telefono= $request->input('telefono');
         $email = $request->input('email');
 
+        
         $user->name = $name;
         $user->surname = $surname;
-        $user->nick = $nick;
+        $user->telefono = $telefono;
         $user->email = $email;
 
         //subir imagen

@@ -1,5 +1,15 @@
 <html lang="es">
     <head>
+
+        <script >
+           
+               $( "div:last" ).click(function() { $(this).remove();
+                alert("hola");
+});
+            
+
+
+        </script>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -123,11 +133,11 @@
     </body>
     <!--   JS   -->
 
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
-     <script src="{{asset('js/main.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/main.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/material.min.js')}}"></script>
     <script src="{{asset('js/material-kit.js')}}" type="text/javascript"></script>
 
