@@ -2,16 +2,20 @@
 @section('title','Ingresar')
 
 @section('content')
+
 <div class="wrapper">
 
+      
     <div class="wrapper">
         <div class="header header-filter" style="background-image: url('{{asset('images/usuarios/ingresar.jpg')}}'); background-size: cover; background-position: top center;">
             <div class="container">
+
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                         <div class="card tarjeta-registro">
-                            <form class="form" method="POST" action="{{route('login')}}">
 
+                            <form class="form" method="POST" action="{{route('login')}}">
+                          
                                 @csrf
 
                                 <div class="header header-primary text-center">
@@ -48,13 +52,13 @@
                                     </div><br>
 
                                 </div>
-                                
-                               
+
+
                                 <div class="footer text-center">
-                                     <button type="submit" class="btn btn-simple btn-primary btn-lg">Ingresar <i class="material-icons">fingerprint</i></button> 
+                                    <button type="submit" class="btn btn-simple btn-primary btn-lg">Ingresar <i class="material-icons">fingerprint</i></button> 
                                 </div>
-                             
-                               
+
+
                                 <div class="password"><a href="{{route('password.request')}}"><span class="label label-danger">¿Olvidaste la contraseña?</span></a></div>
 
 

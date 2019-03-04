@@ -53,11 +53,6 @@
                                         <i class="material-icons">feedback</i> Página Instituto
                                     </a>
                                 </li>	
-                                <li>
-                                    <a href="{{route('contact')}}">
-                                        <i class="material-icons">contact_mail</i> Contacto
-                                    </a>
-                                </li>	
                                 
                                 @guest
                                 <li>
@@ -71,6 +66,7 @@
                                     </a>
                                 </li>
                                 @else
+                                
                                 <li>
                                     <a href="{{route('home')}}" >
                                         <i class="material-icons">fingerprint</i> Volver a mi panel

@@ -4,7 +4,7 @@
 
 <div class="clearfix"></div>
 
-<div class="pricing-plan-section" >
+<div class="pricing-plan-section">
 
     <h2 class="centrarh2"> Send Message </h2>
     <hr>
@@ -19,7 +19,7 @@
                 <select name="destinatario" >
                     @foreach($totusers as $user)
                     @if($user->id != Auth::user()->id)
-                    <option value="{{ $user->id }}">{{ $user->name .' '. $user->surname }}</option>
+                    <option value="{{ $user->id }}">{{ $user->name .' '. $user->surname .' '.  $user->surname2}}</option>
                     @endif
                     @endforeach
 
@@ -30,7 +30,13 @@
             <label for="asunto" class="col-md-4 col-form-label text-md-right">{{ __('Asunto') }}</label>
 
             <div class="col-md-6">
-                <input id="text" type="asunto" class="form-control{{ $errors->has('asunto') ? ' is-invalid' : '' }}" name="asunto"  required>
+                
+                @if($mensaje != NULL)
+                 <input id="text" type="asunto" class="form-control{{ $errors->has('asunto') ? ' is-invalid' : '' }}" name="asunto"   value="{{$mensaje->asunto}}" required>
+                @else
+                 <input id="text" type="asunto" class="form-control{{ $errors->has('asunto') ? ' is-invalid' : '' }}" name="asunto"  required>
+                @endif
+               
 
                 @if ($errors->has('email'))
                 <span class="invalid-feedback" role="alert">
@@ -42,8 +48,12 @@
         <div class="form-group row">
             <label for="contenido" class="col-md-4 col-form-label text-md-right">{{ __('Contenido') }}</label>
             <p>
-
-                <textarea style="height: 130px;" class="form-control{{$errors->has('contenido') ? 'is-invalid' : ''}} " name="contenido" required ></textarea>
+                 @if($mensaje != NULL)
+                   <textarea style="height: 130px;" class="form-control{{$errors->has('contenido') ? 'is-invalid' : ''}} " name="contenido" required >{{'(Mensaje reenviado de '.$mensaje->user_autor->name .' '. $mensaje->user_autor->surname .' ) CONTENIDO :  '.$mensaje->contenido}}</textarea>
+                 @else
+                   <textarea style="height: 130px;" class="form-control{{$errors->has('contenido') ? 'is-invalid' : ''}} " name="contenido" required ></textarea>
+                 @endif
+              
                 @if($errors->has('content'))
                 <span  class="invalid-feedback" role='alert'>
                     <strong>{{ $errors->first('contenido')}} </strong>

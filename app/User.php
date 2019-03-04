@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','surname','telefono', 'email', 'password','image_path',
+        'name','surname','surname2','telefono', 'email', 'password','image_path',
     ];
 
     /**
@@ -32,6 +32,14 @@ class User extends Authenticatable
     public function mensajes() 
     {
         return $this->hasMany('App\Mensajes','id_destinatario');
+    }
+    public function logs() 
+    {
+        return $this->hasMany('App\Logs','id_hechopor');
+    }
+     public function ckeditor() 
+    {
+        return $this->hasMany('App\Ckeditor','id');
     }
    
 }

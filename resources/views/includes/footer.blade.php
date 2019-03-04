@@ -20,8 +20,8 @@
 										<li><a href="https://www.instagram.com/explore/locations/280435919/ies-san-sebastian-huelva" target="_blank" class="tran3s"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 									</ul>
 								</div>
-								<div class="col-lg-6 col-md-5 col-xs-12 footer-logo">
-									<div class="logo"><a href="{{route('index')}}"><img src="{{asset('images/logo.png')}}" alt="Logo"></a></div>
+								<div class="col-lg-6 footer-logo " style='margin-top: 50px;'>
+									<div class="logo" style="width: 100px;"><a href="{{route('index')}}"><img src="{{asset('images/logo.png')}}" alt="Logo"></a></div>
 									<p>Hecho por y para los alumnos !!<strong>  &#10084;</strong></p>
 								</div>
 							</div> 

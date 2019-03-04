@@ -2,79 +2,94 @@
 @section('title','Messages View')
 @section('content')
 
-
+<div class="clearfix"></div>
 <div class="pricing-plan-section">
     <div class="table-responsive">
         @if(count($mensajes))
-        <table border="1"  class="table">
-            <tr class="active">
-                <th> Destinatario</th>
-                <th> Asunto</th>
-                <th> Contenido</th>
-                <th> Leido?</th>
-            </tr>
+        <table class="table">
+            <thead>
+                <tr class="active">
+                    <th> Destinatario</th>
+                    <th> Asunto</th>
+                    <th> Contenido</th>
+                    <th> Leido?</th>
+                </tr>
+            </thead>
+            <tbody>
+                @include('includes.message')
+                @foreach($mensajes as $mensaje)
 
-            @include('includes.message')
-            @foreach($mensajes as $mensaje)
+                @if($mensaje->leido == 0)
 
-            <tr class="active"> 
-                <td class="tamañotdimage"> <img src="{{ route('user.avatar',['filename'=>$mensaje->user->image_path]) }}" class="avatartd" /><a   class="alineartexto" href="{{route('profile',['id' => $mensaje ->user->id ])}}" > {{$mensaje ->user->name .' '. $mensaje ->user->surname  }}</a></td>
-                <td >{{ $mensaje->asunto }}</td>
-                <td>{{ $mensaje->contenido }}</td>
-                <td class="tamañotd">
-                    @if($mensaje->leido == 0 )
-                    <img src="{{ asset('images/noleido.png')}}" />
+                <tr class="warning"> 
                     @else
-                    <img src="{{ asset('images/leido.png')}}" data-id="{{$mensaje->id}}" class="btn-dislike" />
-                    @endif
+                <tr class="success"> 
+                    @endif   
 
-                </td>
+                    <td class="tamañotdimage"> <img src="{{ route('user.avatar',['filename'=>$mensaje->user->image_path]) }}" class="avatartd" /><a   class="alineartexto" href="{{route('profile',['id' => $mensaje ->user->id ])}}" > {{$mensaje ->user->name .' '. $mensaje ->user->surname .' '. $mensaje ->user->surname2}}</a></td>
+                    <td >{{ $mensaje->asunto }}</td>
+                    <td>{{ $mensaje->contenido }}</td>
+                    <td class="tamañotd">
+                        @if($mensaje->leido == 0 )
+                        <img src="{{ asset('images/noleido.png')}}" />
+                        @else
+                        <img src="{{ asset('images/leido.png')}}" data-id="{{$mensaje->id}}" class="btn-dislike" />
+                        @endif
 
-                <td class="tamañotd">
-                    <!-- Button to Open the Modal -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal" id="botonmodal" data-target="#myModal"  >
-                        Borrar
-                    </button>
+                    </td>
 
-                    <!-- The Modal -->
-                    <div class="modal" id="myModal">
+                    <td class="tamañotd">
+                         <a type="button" class="btn btn-warning"  href='{{route("reenviar.mensaje",["id" =>$mensaje->id ])}}'  >
+                            Reenviar mensaje
+                        </a>
+                      
+                        <!-- Button to Open the Modal -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" id="botonmodal" data-target="#myModal"  >
+                            Borrar
+                        </button>
 
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal">
 
-                                <!-- Modal Header -->
-                                <div class="modal-header">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
 
-                                    <h4 class="modal-title">Estas seguro?</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+
+                                        <h4 class="modal-title">Estas seguro?</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        Desea eliminar este mensaje? Se elimara permanentemente
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                        <a type="button" href='{{route('message.delete',['id_mensaje' => $mensaje->id])}}' class="btn btn-danger">Borrar definitavamente</a>
+                                    </div>
+
                                 </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    Desea eliminar este mensaje? Se elimara permanentemente
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-                                    <a type="button" href='{{route('message.delete',['id_mensaje' => $mensaje->id])}}' class="btn btn-danger">Borrar definitavamente</a>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
 
 
 
 
-                    <!--                        <a href="{{route('message.delete',['id_mensaje' => $mensaje->id])}}" class="btn btn-danger">Borrar definitavamente</a>-->
+                        <!--                        <a href="{{route('message.delete',['id_mensaje' => $mensaje->id])}}" class="btn btn-danger">Borrar definitavamente</a>-->
 
-                </td>
-            </tr>
+                    </td>
+                </tr>
 
 
-            @endforeach
+                @endforeach
+            </tbody>
         </table>
+         {{$mensajes -> links()}}
+        
         @else
         <div class='alert alert-danger'>
             {{ __('No se ha encontrado ningun mensaje :(') }}

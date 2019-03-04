@@ -1,15 +1,7 @@
 <html lang="es">
     <head>
 
-        <script >
-           
-               $( "div:last" ).click(function() { $(this).remove();
-                alert("hola");
-});
-            
 
-
-        </script>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -56,6 +48,7 @@
 
     <body class="pagina-ingreso">
         <div class="main-page-wrapper home-page-two">
+
             <div class="html-top-content">
 
                 <!-- Menú -->
@@ -70,18 +63,84 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{route('contact')}}">
-                                        <i class="material-icons">contact_mail</i> Contacto
-                                    </a>
-                                </li>	
-                                <li>
                                     <a href="{{route('home')}}" >
-                                        <i class="material-icons">fingerprint</i> Volver a mi panel
+                                        <i class="material-icons">account_balance</i> Home
                                     </a>
                                 </li>
+                                @if(\Auth::user()->poder == "admin")
+                                <li>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">list</i>Listados</a>
+
+                                        <ul class="dropdown-menu">
+
+                                            <li>
+                                                <a href="{{route('listarusuarios')}}" >
+                                                    Listar usuarios activos
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{route('listarusuariosinactivos')}}" >
+                                                    Listar usuarios inactivos
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('user.logs')}}" >
+                                                    Ver Logs
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">picture_as_pdf</i>Descargar PDFs</a>
+
+                                        <ul class="dropdown-menu">
+
+
+                                            <li>
+                                                <a href="{{ route('users.pdf',['activo' => 1]) }}">
+                                                    Descargar usuarios activos en PDF
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ route('users.pdf',['activo' => 0]) }}">
+                                                    Descargar usuarios inactivos en PDF
+                                                </a>
+
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('users.pdf_logs') }}">
+                                                    Descargar Logs
+                                                </a>
+
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                @elseif(\Auth::user()->activo == 1)
+                                <li>
+                                    <a href="{{route('listarusuarios')}}" >
+                                        <i class="material-icons">fingerprint</i> Buscar usuario
+                                    </a>
+                                </li>
+
+                                @endif
+
+
                             </ul>
 
                             <ul class="button-group float-right">
+                                @if(\Auth::user()->activo == 1)
                                 <li>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">message</i> Mensajes</a>
@@ -97,10 +156,41 @@
                                 </li>
 
                                 <li>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">description</i> Gestionar Curriculum</a>
+
+                                        <ul class="dropdown-menu">
+
+                                            <li>
+                                                <a href="{{route('ckeditor',["id"=>\Auth::user()->id])}}">
+                                                     Curriculum
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('ck.contenido',['id'=>\Auth::user()->id])}}">
+                                                     VER Curriculum
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href=" {{ route('users.pdf_ckedit',['id'=> \Auth::user()->id]) }}">
+                                                    PDF Curriculum
+                                                </a>
+
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                @endif
+
+
+                                <li>
                                     <a href="{{route('config')}}">
-                                        <i class="material-icons"></i> Perfil
+                                        <i class="material-icons">perm_identity</i> Perfil
                                     </a>
                                 </li>	
+
+
                                 <li>
                                     <!--<a href="{{route('login')}}" > -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -120,16 +210,18 @@
                         </div> 
                     </div> 
                 </header> 
-                <!-- /Menú  -->
-
-                @yield('content')
 
 
 
             </div>
+            <!-- /Menú  -->
+
+            @yield('content')
 
 
         </div>  
+
+
     </body>
     <!--   JS   -->
 
@@ -137,10 +229,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
+
     <script src="{{asset('js/main.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/material.min.js')}}"></script>
     <script src="{{asset('js/material-kit.js')}}" type="text/javascript"></script>
 
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('../vendor/unisharp/laravel-ckeditor/ckeditor.js')}}" ></script>
+    @yield('js')
 </html>
 
 

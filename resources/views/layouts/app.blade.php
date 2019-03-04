@@ -7,6 +7,11 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <!--        //RECAPTCHA-->
+        
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        
+        
         <!-- Favicon -->
         <link rel="icon" type="image/png" sizes="56x56" href="{{asset('images/fav-icon/icon.png')}}">
 
@@ -23,18 +28,18 @@
 
     </head>
     <body class="pagina-ingreso">
-        <nav class="navbar navbar-transparent navbar-absolute" style="padding-top: 65px;">
+        <nav class="navbar navbar-transparent navbar-absolute" >
             <div class="container">
 
                 <div class="logo float-left"><a href="{{route('index')}}"><img src="{{asset('images/logo.png')}}" alt="Logo"></a></div>
 
             </div>
         </nav>
-
+      
         @section('content')
         @show
 
-        <footer class="footer">
+        <footer class="footer" >
             <div class="container">
                 <nav class="pull-left">
                     <ul>
@@ -56,7 +61,7 @@
                 </div>
             </div>
         </footer>
-    </div>
+        </div>
 </div>
 
 </body>

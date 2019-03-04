@@ -34,33 +34,47 @@
                                     <span class="input-group-addon">
                                         <i class="material-icons">account_box</i>
                                     </span>
-                                    
-                                        <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus placeholder="Inserte su apellido...">
 
-                                        @if ($errors->has('surname'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('surname') }}</strong>
-                                        </span>
-                                        @endif
-                                    
+                                    <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus placeholder="Inserte su 1º apellido...">
+
+                                    @if ($errors->has('surname'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('surname') }}</strong>
+                                    </span>
+                                    @endif
+
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">account_box</i>
+                                    </span>
+
+                                    <input id="surname2" type="text" class="form-control{{ $errors->has('surname2') ? ' is-invalid' : '' }}" name="surname2" value="{{ old('surname2') }}" autofocus placeholder="Inserte su 2º apellido...">
+
+                                    @if ($errors->has('surname2'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('surname2') }}</strong>
+                                    </span>
+                                    @endif
+
                                 </div>
 
-                                
-                                 <div class="input-group">
+
+                                <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">mobile_friendly</i>
                                     </span>
-                                    
-                                        <input id="telefono" type="number" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}" required autofocus placeholder="Inserte su telefono...">
 
-                                        @if ($errors->has('telefono'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('telefono') }}</strong>
-                                        </span>
-                                        @endif
-                                    
+                                    <input id="telefono" type="number" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}" required autofocus placeholder="Inserte su telefono...">
+
+                                    @if ($errors->has('telefono'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('telefono') }}</strong>
+                                    </span>
+                                    @endif
+
                                 </div>
-                                
+
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">email</i>
@@ -92,6 +106,17 @@
                                         <i class="material-icons">lock_outline</i>
                                     </span>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Repetir contraseña...">
+
+                                </div>
+
+                                <div class="input-group">
+
+                                    <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
+                                    @if($errors -> has('g-recaptcha-response'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                    @endif
 
                                 </div>
 

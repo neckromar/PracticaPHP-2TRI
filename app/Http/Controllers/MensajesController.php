@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\User;
+use App\Logs;
+use DateTime;
 use App\Mensajes;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +22,14 @@ class MensajesController extends Controller {
     public function __construct() {
         $this->middleware('auth');
     }
+   public function reenviarmensaje($id){
+       
+        $mensaje = Mensajes::find($id);
+         $totusers = User::where('activo', 1)->get();
+           return view('user.messageview', ['mensaje' => $mensaje,'totusers' => $totusers]);
+        
+       
+   }
 
     public function save(Request $request) {
 
@@ -33,7 +43,7 @@ class MensajesController extends Controller {
         //recoger datos
 
         $user = \Auth::user();
-
+        $timestamp = new DateTime();
 
         $destinatario = $request->input('destinatario');
         $asunto = $request->input('asunto');
@@ -52,6 +62,7 @@ class MensajesController extends Controller {
 
         //guardar comentarios 
         $messages->save();
+        DB::table('logs')->insert(['tipo' => 'INSERT', 'tabla' => 'mensajes', 'id_hechopor' => \Auth::user()->id, 'id_cambiado' => $destinatario,'explicativo' => ' le han enviado un mensaje', 'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
         //redireccion al finalizar
         return redirect()->route('user.messages', ['id' => $user->id])
@@ -63,14 +74,16 @@ class MensajesController extends Controller {
     public function delete($id) {
         //recoger los datos del usuario identificado 
         $user = \Auth::user();
-
+        $timestamp = new DateTime();
         $delet = Mensajes::where('id', $id)->first();
 
         //Comprobar si soy el dueño del comentario o de la publicacion
-        if ($user && ($delet->id_autor == $user->id) || $delet->id_destinatario == $user->id ) {
+        if ($user && ($delet->id_autor == $user->id) || $delet->id_destinatario == $user->id) {
 
             //conseguir los datos del objeto del comentario
             $delet->delete();
+            DB::table('logs')->insert(['tipo' => 'DELETE', 'tabla' => 'mensajes', 'id_hechopor' => \Auth::user()->id, 'id_cambiado' => $delet->id, 'explicativo' => '<- Id del mensaje ,   '  . $delet->user->name . ' ' . $delet->user->surname . ' ' . $delet->user->surname2, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
+
             return redirect()->route('home')
                             ->with([
                                 'message' => 'Mensaje borrado!!'
