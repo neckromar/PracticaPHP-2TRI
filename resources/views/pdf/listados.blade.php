@@ -27,7 +27,8 @@
 
             @foreach($users as $user)
             <tr>
-                <td>{{$user->name}}</td> 
+               
+                <td >{{$user->name}}</td> 
                 <td>{{$user->surname}}</td> 
                  <td>{{$user->surname2}}</td> 
                 <td>{{$user->telefono}}</td> 

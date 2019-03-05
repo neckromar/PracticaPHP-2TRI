@@ -291,12 +291,12 @@ class UserController extends Controller {
 
                 DB::table('logs')->insert(['tipo' => 'DELETE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id, 'id_cambiado' => $perfil->id, 'explicativo' => ' <-Id del usuario; Eliminado -> Name: ' . $perfil->name . ' Surname: ' . $perfil->surname . ' ' . $perfil->surname2 ,'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
-                DB::table('users_deleted')->insert(['id' => $perfil->id, 'name' => $perfil->name, 'surname' => $perfil->surname, 'surname2' => $perfil->surname2, 'telefono' => $perfil->telefono, 'email' => $perfil->email, 'poder' => $perfil->poder, 'created_at' => $perfil->created_at, 'updated_at' => $perfil->updated_at]);
+                DB::table('users_deleted')->insert(['id' => $perfil->id, 'name' => $perfil->name, 'surname' => $perfil->surname, 'surname2' => $perfil->surname2, 'telefono' => $perfil->telefono, 'email' => $perfil->email, 'poder' => $perfil->poder, 'created_at' => $perfil->created_at, 'updated_at' => $timestamp]);
 
                 //elimianr registro
                 $perfil->delete();
 
-                return redirect()->route('home')
+                return redirect()->route('ver_usuarios_eliminados')
                                 ->with(['message' => 'El usuario se ha borrado junto a sus datos y mensajes']);
             } else {
                 
@@ -368,6 +368,20 @@ class UserController extends Controller {
         }
     }
 
-    
+    public function ver_usuarios_eliminados() {
+
+        $user = \Auth::user();
+
+        if ($user->poder == "admin") {
+
+            $delete = DB::table('users_deleted')->paginate(6);
+
+            return view('admin.usuarioseliminados', ['users' => $delete]);
+        } else {
+
+            return redirect()->route('home')
+                            ->with(['error' => 'No puedes acceder a esta pagina']);
+        }
+    }
 
 }

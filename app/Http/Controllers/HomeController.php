@@ -26,4 +26,16 @@ class HomeController extends Controller
     { 
         return view('home');
     }
+     public function adminpanel()
+    { 
+        if(\Auth::user()->poder=="admin")
+        {
+             return view('admin.adminpanel');
+        }
+        else{
+            return redirect()->route('home')
+                                ->with(['error' => 'No puedes acceder a esta pagina']);
+        }
+       
+    }
 }

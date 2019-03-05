@@ -28,12 +28,9 @@
             <tbody>
 
                 @foreach($logs as $log)
-                @if($log->tipo =="UPDATE")
-                <tr class="bg-success"> 
-                    @else
-                <tr class="bg-danger"> 
-                    @endif
-
+               
+                <tr> 
+                   
                     <td > {{ $log->tipo }}</td>
                     <td>{{ $log->tabla }}</td>
                     <td> {{$log->hechopor->name .' '. $log->hechopor->surname .' '. $log->hechopor->surname2}}</td>

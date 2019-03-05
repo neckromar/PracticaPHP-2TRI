@@ -69,65 +69,13 @@
                                 </li>
                                 @if(\Auth::user()->poder == "admin")
                                 <li>
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">list</i>Listados</a>
-
-                                        <ul class="dropdown-menu">
-
-                                            <li>
-                                                <a href="{{route('listarusuarios')}}" >
-                                                    Listar usuarios activos
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="{{route('listarusuariosinactivos')}}" >
-                                                    Listar usuarios inactivos
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{route('user.logs')}}" >
-                                                    Ver Logs
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
+                                    <a href="{{route('adminpanel')}}" >
+                                        <i class="material-icons">home</i> Panel de administracion
+                                    </a>
                                 </li>
+                                @endif
 
-                                <li>
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">picture_as_pdf</i>Descargar PDFs</a>
-
-                                        <ul class="dropdown-menu">
-
-
-                                            <li>
-                                                <a href="{{ route('users.pdf',['activo' => 1]) }}">
-                                                    Descargar usuarios activos en PDF
-                                                </a>
-
-                                            </li>
-
-                                            <li>
-                                                <a href="{{ route('users.pdf',['activo' => 0]) }}">
-                                                    Descargar usuarios inactivos en PDF
-                                                </a>
-
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('users.pdf_logs') }}">
-                                                    Descargar Logs
-                                                </a>
-
-                                            </li>
-
-
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                @elseif(\Auth::user()->activo == 1)
+                                @if(\Auth::user()->poder == "usuario")
                                 <li>
                                     <a href="{{route('listarusuarios')}}" >
                                         <i class="material-icons">fingerprint</i> Buscar usuario
@@ -154,7 +102,8 @@
                                         </ul>
                                     </div>
                                 </li>
-
+                                @endif
+                                @if(\Auth::user()->poder == "usuario")
                                 <li>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle"  data-toggle="dropdown"> <i class="material-icons">description</i> Gestionar Curriculum</a>
@@ -163,12 +112,12 @@
 
                                             <li>
                                                 <a href="{{route('ckeditor',["id"=>\Auth::user()->id])}}">
-                                                     Curriculum
+                                                    Curriculum
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="{{route('ck.contenido',['id'=>\Auth::user()->id])}}">
-                                                     VER Curriculum
+                                                    VER Curriculum
                                                 </a>
                                             </li>
                                             <li>
@@ -209,15 +158,21 @@
                             </ul>						
                         </div> 
                     </div> 
+
+
+
+
+
                 </header> 
 
 
 
             </div>
+
             <!-- /Menú  -->
-
-            @yield('content')
-
+            <main>
+                @yield('content')
+            </main>
 
         </div>  
 
@@ -237,6 +192,7 @@
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('../vendor/unisharp/laravel-ckeditor/ckeditor.js')}}" ></script>
     @yield('js')
+
 </html>
 
 

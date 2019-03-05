@@ -5,7 +5,7 @@
 
 <div class="wrapper">
 
-      
+
     <div class="wrapper">
         <div class="header header-filter" style="background-image: url('{{asset('images/usuarios/ingresar.jpg')}}'); background-size: cover; background-position: top center;">
             <div class="container">
@@ -13,9 +13,9 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                         <div class="card tarjeta-registro">
-
+                            
                             <form class="form" method="POST" action="{{route('login')}}">
-                          
+
                                 @csrf
 
                                 <div class="header header-primary text-center">
@@ -63,7 +63,13 @@
 
 
                             </form>
+                            <div class="ml-5" style="margin-left: 20%;">
+                                
+                                 @include('includes.message')
+                            </div>
+                            
                         </div>
+                       
                     </div>
                 </div>
             </div>

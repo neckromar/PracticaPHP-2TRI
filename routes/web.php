@@ -20,6 +20,7 @@ Route::get('/',function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/adminpanel', 'HomeController@adminpanel')->name('adminpanel');
 
 Route::get('/configuration/{search?}', 'UserController@config')->name('config');
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
@@ -47,7 +48,7 @@ Route::get('/user/descargar-logs', 'UserController@pdf_logs')->name('users.pdf_l
 Route::get('/user/descargar-curriculum/{id}', 'UserController@pdf_ckedit')->name('users.pdf_ckedit');
 
 //logs
-Route::get('/user/logs', 'UserController@verlogs')->name('user.logs');
+Route::get('/adminpanel/logs', 'UserController@verlogs')->name('user.logs');
 
 
 //curriculum
@@ -55,3 +56,7 @@ Route::get('/user/curriculum/{id}', 'CkeditorController@curriculum')->name('cked
 Route::post('/user/curriculum/save', 'CkeditorController@save')->name('ck.save');
 Route::get('/user/curriculum/ckContent/{id}', 'CkeditorController@getContenido')->name('ck.contenido');
 Route::post('/user/curriculum/update', 'CkeditorController@update')->name('ck.update');
+
+
+//ver usuarios eliminados
+Route::get('/adminpanel/eliminados', 'UserController@ver_usuarios_eliminados')->name('ver_usuarios_eliminados');

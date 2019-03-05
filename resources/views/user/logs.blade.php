@@ -30,7 +30,7 @@
                     <td> <a   class="alineartexto" href="{{route('profile',['id' => $log->hechopor->id ])}}" > {{$log->hechopor->name .' '. $log->hechopor->surname .' '. $log->hechopor->surname2}}</a></td>
 
 
-                    @if($log->tipo =="DELETE")
+                    @if($log->tipo == "DELETE")
                     <td> {{$log->id_cambiado .' '. $log->explicativo }}</td>
                     @else
                     <td> <a   class="alineartexto" href="{{route('profile',['id' => $log->cambiado->id ])}}" > {{$log->cambiado->name .' '. $log->cambiado->surname .' '. $log->cambiado->surname2}}</a>{{$log->explicativo}}</td>
@@ -41,7 +41,7 @@
                 @endforeach
             </tbody>
         </table>
-             {{$logs -> links()}}
+        {{$logs -> links()}}
     </div>
 </div>
 

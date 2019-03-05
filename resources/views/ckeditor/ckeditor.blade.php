@@ -42,6 +42,7 @@
                     @section('js')
                     
                     <script>
+                        
                         CKEDITOR.replace('contenido');
                     
                     </script>
