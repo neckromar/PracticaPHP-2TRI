@@ -45,7 +45,9 @@
         
          @if(\Auth::user()->poder == 'admin'  && $user->activo == 1 )
          <a type="button" class="btn btn-simple btn-warning btn-lg" href=" {{ route('users.pdf_ckedit',['id'=> $user->id]) }}" >Descargar curriculum</a>
+         
         @endif
+        
 
         @if(\Auth::user()->poder == 'admin' || \Auth::user()->id == $user->id)
 

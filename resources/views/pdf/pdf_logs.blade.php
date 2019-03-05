@@ -1,5 +1,5 @@
 <html>
-     <head>
+    <head>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -14,7 +14,7 @@
 
     </head>
     <body>
-        
+
         <table class="table">
             <thead>
                 <tr class="bg-active">
@@ -28,26 +28,28 @@
             <tbody>
 
                 @foreach($logs as $log)
-               
+
                 <tr> 
-                   
+
                     <td > {{ $log->tipo }}</td>
                     <td>{{ $log->tabla }}</td>
-                    <td> {{$log->hechopor->name .' '. $log->hechopor->surname .' '. $log->hechopor->surname2}}</td>
+                    <td>  {{$log->id_hechopor  }}</td>
 
 
-                    @if($log->tipo =="DELETE")
+                    @if($log->tipo =="DELETE" )
                     <td> {{$log->id_cambiado .' '. $log->explicativo }}</td>
                     @else
-                    <td>  {{$log->cambiado->name .' '. $log->cambiado->surname .' '. $log->cambiado->surname2}}</td>
+                    <td> {{$log->id_cambiado .' '. $log->explicativo}}</td>
+
                     @endif
+
                     <td>{{ $log->created_at }} </td>
                 </tr>
 
                 @endforeach
             </tbody>
         </table>
-        
+
     </body>
-    
+
 </html>

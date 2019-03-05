@@ -199,7 +199,7 @@ class UserController extends Controller {
             // seteo el nombre de la imagen en el objeto
             $user->image_path = $image_path_name;
         }
-        DB::table('logs')->insert(['tipo' => 'UPDATE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id, 'id_cambiado' => $user->id,'explicativo'=>' ha cambiado su propio perfil', 'created_at' => $timestamp, 'updated_at' => $timestamp]);
+        DB::table('logs')->insert(['tipo' => 'UPDATE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id .'<- ID '.\Auth::user()->name .' '.\Auth::user()->surname .' '.\Auth::user()->surname2, 'id_cambiado' => $user->id,'explicativo'=>'<- Su ID ; '.$user->name.' '.$user->surname.' '.$user->surname2.' '.' ha cambiado su propio perfil', 'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
         $user->update();
 
@@ -239,7 +239,7 @@ class UserController extends Controller {
         $user->activo = $activo;
         $timestamp = new DateTime();
 
-        DB::table('logs')->insert(['tipo' => 'UPDATE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id, 'id_cambiado' => $user->id,'explicativo'=>' han cambiado su perfil', 'created_at' => $timestamp, 'updated_at' => $timestamp]);
+        DB::table('logs')->insert(['tipo' => 'UPDATE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id .'<- ID '.\Auth::user()->name .' '.\Auth::user()->surname .' '.\Auth::user()->surname2, 'id_cambiado' => $user->id,'explicativo'=>' <- Su ID ; Han cambiado el perfil de: '.$user->name.' '.$user->surname.' '.$user->surname2, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
         $user->update();
 
@@ -289,7 +289,7 @@ class UserController extends Controller {
                     Storage::disk('users')->delete($perfil->image_path);
                 }
 
-                DB::table('logs')->insert(['tipo' => 'DELETE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id, 'id_cambiado' => $perfil->id, 'explicativo' => ' <-Id del usuario; Eliminado -> Name: ' . $perfil->name . ' Surname: ' . $perfil->surname . ' ' . $perfil->surname2 ,'created_at' => $timestamp, 'updated_at' => $timestamp]);
+                DB::table('logs')->insert(['tipo' => 'DELETE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id .'<- ID '.\Auth::user()->name .' '.\Auth::user()->surname .' '.\Auth::user()->surname2, 'id_cambiado' => $perfil->id, 'explicativo' => ' <-Id del usuario; Eliminado -> Name: ' . $perfil->name . ' Surname: ' . $perfil->surname . ' ' . $perfil->surname2 ,'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
                 DB::table('users_deleted')->insert(['id' => $perfil->id, 'name' => $perfil->name, 'surname' => $perfil->surname, 'surname2' => $perfil->surname2, 'telefono' => $perfil->telefono, 'email' => $perfil->email, 'poder' => $perfil->poder, 'created_at' => $perfil->created_at, 'updated_at' => $timestamp]);
 
