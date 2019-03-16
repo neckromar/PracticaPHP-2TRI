@@ -40,6 +40,7 @@ Route::get('/messages/{id}', 'MensajesController@leido');
 Route::get('/reenviar/{id}', 'MensajesController@reenviarmensaje')->name("reenviar.mensaje");
 
 
+
 //generar pdf
 Route::get('/user/descargar-users/{activo}', 'UserController@pdf')->name('users.pdf');
 //generar pdf logs
@@ -60,3 +61,7 @@ Route::post('/user/curriculum/update', 'CkeditorController@update')->name('ck.up
 
 //ver usuarios eliminados
 Route::get('/adminpanel/eliminados', 'UserController@ver_usuarios_eliminados')->name('ver_usuarios_eliminados');
+
+//enviar correo
+Route::get('/adminpanel/enviarcorreo/{search?}', 'UserController@send_email')->name('vista_correo');
+Route::post('/adminpanel/enviarcorreo/enviado', 'UserController@enviar_correo')->name('enviar_correo');

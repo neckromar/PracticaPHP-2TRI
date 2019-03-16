@@ -62,7 +62,7 @@ class MensajesController extends Controller {
 
         //guardar comentarios 
         $messages->save();
-        DB::table('logs')->insert(['tipo' => 'INSERT', 'tabla' => 'mensajes', 'id_hechopor' => \Auth::user()->id, 'id_cambiado' => $destinatario,'explicativo' => ' le han enviado un mensaje', 'created_at' => $timestamp, 'updated_at' => $timestamp]);
+        DB::table('logs')->insert(['tipo' => 'INSERT', 'tabla' => 'mensajes', 'id_hechopor' =>  \Auth::user()->id .'<- ID '.\Auth::user()->name .' '.\Auth::user()->surname .' '.\Auth::user()->surname2, 'id_cambiado' => $destinatario,'explicativo' => ' le han enviado un mensaje', 'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
         //redireccion al finalizar
         return redirect()->route('user.messages', ['id' => $user->id])

@@ -14,10 +14,10 @@
     <div class="row">
 
         <!-- LISTADO DE USUARIOS ACTIVOS -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-2 col-md-4">
             <div class="card">
 
-                <img src="{{asset('images/listadoactivo.png')}}" class="card-img-top" alt="..." style="margin-left: 25%;" > 
+                <img src="{{asset('images/listadoactivo.png')}}" class="card-img-top" alt="..." style="margin-left: 15%;" > 
 
                 <div class="card-body text-center">
 
@@ -31,8 +31,7 @@
                     <br>
                     <div class="card-text text-black-50">
 
-                        <a href="{{ route('users.pdf',['activo' => 1]) }}"><i class="material-icons">
-picture_as_pdf</i> Descargar usuarios activos en PDF </a>
+                        <a href="{{ route('users.pdf',['activo' => 1]) }}"><i class="material-icons">picture_as_pdf</i> Descargar usuarios activos en PDF </a>
 
                     </div>
                 </div>
@@ -41,9 +40,9 @@ picture_as_pdf</i> Descargar usuarios activos en PDF </a>
 
 
         <!-- LISTADO DE USUARIOS INACTIVOS-->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-0 shadow">
-                <img src="{{asset('images/listadoinactivo.png')}}" class="card-img-top" alt="..." style="margin-left: 25%;" > 
+        <div class="col-xl-2 col-md-4 ">
+            <div class="card">
+                <img src="{{asset('images/listadoinactivo.png')}}" class="card-img-top" alt="..." style="margin-left: 15%;" > 
 
                 <div class="card-body text-center">
 
@@ -66,12 +65,11 @@ picture_as_pdf</i> Descargar usuarios activos en PDF </a>
         </div>
 
         <!-- VER LOGS-->
-        <br>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-0 shadow">
+        <div class="col-xl-2 col-md-4">
+            <div class="card">
 
 
-                <img src="{{asset('images/logs.png')}}" class="card-img-top" alt="..." style="margin-left: 25%;" > 
+                <img src="{{asset('images/logs.png')}}" class="card-img-top" alt="..." style="margin-left: 15%;" > 
                 <div class="card-body text-center">
                     <h5 class="card-title mb-0">LOGS</h5>
                     <br>
@@ -87,11 +85,11 @@ picture_as_pdf</i> Descargar usuarios activos en PDF </a>
                 </div>
             </div>
         </div>
-
+        <hr>
         <!-- Team Member 4 -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-0 shadow">
-                <img src="{{asset('images/eliminados.png')}}" class="card-img-top" alt="..." style="margin-left: 25%;" > 
+        <div class="col-xl-3 col-md-4">
+            <div class="card ">
+                <img src="{{asset('images/eliminados.png')}}" class="card-img-top" alt="..." style="margin-left: 15%;" > 
 
                 <div class="card-body text-center">
                     <h5 class="card-title mb-0">Ver usuarios eliminados</h5>
@@ -101,13 +99,60 @@ picture_as_pdf</i> Descargar usuarios activos en PDF </a>
                         <a href="{{ route('ver_usuarios_eliminados') }}"> <i class="material-icons">list</i> Usuarios eliminados </a>
 
                     </div>
+                    <br>
+                    <div class="card-text text-black-50">
+
+                        <a href="{{ route('users.pdf',['activo' => 2]) }}"><i class="material-icons">picture_as_pdf</i> Descargar usuarios Eliminados en PDF </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+          <!-- Team Member 5 -->
+        <div class="col-xl-3 col-md-4">
+            <div class="card">
+                <img src="{{asset('images/gmail.png')}}" class="card-img-top" alt="..." style="margin-left: 15%;" > 
+
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Enviar correos</h5>
+                    <br>
+                    <div class="card-text text-black-50">
+
+                        <a  href=" {{ route('vista_correo') }}" ><i class="material-icons">alternate_email</i>Enviar correo</a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    
+           <!-- Team Member 6-->
+        <div class="col-xl-3 col-md-4">
+            <div class="card">
+                <img src="{{asset('images/sale.png')}}" class="card-img-top" alt="..." style="margin-left: 15%;" > 
+
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Mandar Ofertas de trabajo</h5>
+                    <br>
+                    <div class="card-text text-black-50">
+
+                        En proceso
+
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
     <!-- /.row -->
-
+    
+    </div>
+    
+    
+     
+  
 </div>
 
 @endsection

@@ -4,7 +4,8 @@
 
 <div class="clearfix"></div>
 <div class="pricing-plan-section">
-    <div class="table-responsive">
+    <div class="table-responsive"  >
+        
         @if(count($mensajes))
         <table class="table">
             <thead>
@@ -15,7 +16,9 @@
                     <th> Leido?</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody >
+                
+          
                 @include('includes.message')
                 @foreach($mensajes as $mensaje)
 
@@ -27,7 +30,7 @@
                     @endif   
 
                     <td class="tamañotdimage"> <img src="{{ route('user.avatar',['filename'=>$mensaje->user->image_path]) }}" class="avatartd" /><a   class="alineartexto" href="{{route('profile',['id' => $mensaje ->user->id ])}}" > {{$mensaje ->user->name .' '. $mensaje ->user->surname .' '. $mensaje ->user->surname2}}</a></td>
-                    <td >{{ $mensaje->asunto }}</td>
+                    <td >{{ $mensaje->asunto }} </td>
                     <td>{{ $mensaje->contenido }}</td>
                     <td class="tamañotd">
                         @if($mensaje->leido == 0 )
@@ -39,10 +42,10 @@
                     </td>
 
                     <td class="tamañotd">
-                         <a type="button" class="btn btn-warning"  href='{{route("reenviar.mensaje",["id" =>$mensaje->id ])}}'  >
+                        <a type="button" class="btn btn-warning"  href='{{route("reenviar.mensaje",["id" =>$mensaje->id ])}}'  >
                             Reenviar mensaje
                         </a>
-                      
+
                         <!-- Button to Open the Modal -->
                         <button type="button" class="btn btn-danger" data-toggle="modal" id="botonmodal" data-target="#myModal"  >
                             Borrar
@@ -88,8 +91,10 @@
                 @endforeach
             </tbody>
         </table>
-         {{$mensajes -> links()}}
-        
+ 
+
+        {{$mensajes -> links()}}
+
         @else
         <div class='alert alert-danger'>
             {{ __('No se ha encontrado ningun mensaje :(') }}

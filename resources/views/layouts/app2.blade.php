@@ -5,6 +5,8 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    
         <title>IES San Sebastian - @yield('title')</title>
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -46,7 +48,8 @@
 
     </head>
 
-    <body class="pagina-ingreso">
+    <body class="pagina-ingreso" ng-app="myApp">
+        
         <div class="main-page-wrapper home-page-two">
 
             <div class="html-top-content">
@@ -134,8 +137,10 @@
 
 
                                 <li>
+                                    
+                                    <img src="{{ route('user.avatar',['filename'=>\Auth::user()->image_path]) }}" class="avatarperfil" />
                                     <a href="{{route('config')}}">
-                                        <i class="material-icons">perm_identity</i> Perfil
+                                       Perfil
                                     </a>
                                 </li>	
 
@@ -171,7 +176,9 @@
 
             <!-- /Menú  -->
             <main>
+                
                 @yield('content')
+                
             </main>
 
         </div>  
@@ -183,8 +190,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
     <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
-
     <script src="{{asset('js/main.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/material.min.js')}}"></script>
     <script src="{{asset('js/material-kit.js')}}" type="text/javascript"></script>

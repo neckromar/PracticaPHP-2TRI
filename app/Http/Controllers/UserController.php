@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
+use App\Mail\EmergencyCallReceived;
 use App\User;
 use App\Logs;
 use App\Ckeditor;
@@ -19,7 +21,7 @@ class UserController extends Controller {
     //
     //prevenir rutas si estas logout
     public function __construct() {
-        
+
         $this->middleware('auth');
     }
 
@@ -41,11 +43,11 @@ class UserController extends Controller {
             $totusers = User::where('email', $search)
                             ->where('activo', 1)->get();
 
-            return view('user.messageview', ['totusers' => $totusers,'mensaje' => $mensaje]);
+            return view('user.messageview', ['totusers' => $totusers, 'mensaje' => $mensaje]);
         } else {
 
             $totusers = User::where('activo', 1)->get();
-            return view('user.messageview', ['totusers' => $totusers,'mensaje' => $mensaje]);
+            return view('user.messageview', ['totusers' => $totusers, 'mensaje' => $mensaje]);
         }
     }
 
@@ -69,18 +71,22 @@ class UserController extends Controller {
             } else {
                 return view('user.listarusuarios', ['users' => $users]);
             }
-        } else {
-            $users = User::orderBy('id', "asc")
-                    ->where('activo', 1)
-                    ->paginate(5);
+        } 
 
-            if (count($users) == 0) {
-                return view('user.listarusuarios', ['users' => $users])
-                                ->with(['error' => 'No se ha encontrado a nadie']);
-            } else {
-                return view('user.listarusuarios', ['users' => $users]);
+           else {
+
+                $users = User::orderBy('id', 'asc')
+                        ->where('activo', 1)
+                        ->paginate(5);
+
+                if (count($users) == 0) {
+                    return view('user.listarusuarios', ['users' => $users])
+                                    ->with(['error' => 'No se ha encontrado a nadie']);
+                } else {
+                    return view('user.listarusuarios', ['users' => $users]);
+                }
             }
-        }
+        
     }
 
     public function listarusuariosinactivos($search = null, $select = null, $order = null) {
@@ -176,7 +182,11 @@ class UserController extends Controller {
         $github = $request->input('github');
         $telefono = $request->input('telefono');
         $email = $request->input('email');
-
+        
+//        $selectgrados = $request->input('selectgrados');
+//        $curso = $request->input('curso');
+//        
+//      DB::table('formacionacademica')->insert(['id_usuario' => \Auth::user()->id,'grado'=>'gradomedio', 'fp' => $selectgrados, 'nombre' => $curso]);
 
         $user->name = $name;
         $user->surname = $surname;
@@ -199,7 +209,7 @@ class UserController extends Controller {
             // seteo el nombre de la imagen en el objeto
             $user->image_path = $image_path_name;
         }
-        DB::table('logs')->insert(['tipo' => 'UPDATE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id .'<- ID '.\Auth::user()->name .' '.\Auth::user()->surname .' '.\Auth::user()->surname2, 'id_cambiado' => $user->id,'explicativo'=>'<- Su ID ; '.$user->name.' '.$user->surname.' '.$user->surname2.' '.' ha cambiado su propio perfil', 'created_at' => $timestamp, 'updated_at' => $timestamp]);
+        DB::table('logs')->insert(['tipo' => 'UPDATE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id . '<- ID ' . \Auth::user()->name . ' ' . \Auth::user()->surname . ' ' . \Auth::user()->surname2, 'id_cambiado' => $user->id, 'explicativo' => '<- Su ID ; ' . $user->name . ' ' . $user->surname . ' ' . $user->surname2 . ' ' . ' ha cambiado su propio perfil', 'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
         $user->update();
 
@@ -239,7 +249,7 @@ class UserController extends Controller {
         $user->activo = $activo;
         $timestamp = new DateTime();
 
-        DB::table('logs')->insert(['tipo' => 'UPDATE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id .'<- ID '.\Auth::user()->name .' '.\Auth::user()->surname .' '.\Auth::user()->surname2, 'id_cambiado' => $user->id,'explicativo'=>' <- Su ID ; Han cambiado el perfil de: '.$user->name.' '.$user->surname.' '.$user->surname2, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
+        DB::table('logs')->insert(['tipo' => 'UPDATE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id . '<- ID ' . \Auth::user()->name . ' ' . \Auth::user()->surname . ' ' . \Auth::user()->surname2, 'id_cambiado' => $user->id, 'explicativo' => ' <- Su ID ; Han cambiado el perfil de: ' . $user->name . ' ' . $user->surname . ' ' . $user->surname2, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
         $user->update();
 
@@ -289,7 +299,7 @@ class UserController extends Controller {
                     Storage::disk('users')->delete($perfil->image_path);
                 }
 
-                DB::table('logs')->insert(['tipo' => 'DELETE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id .'<- ID '.\Auth::user()->name .' '.\Auth::user()->surname .' '.\Auth::user()->surname2, 'id_cambiado' => $perfil->id, 'explicativo' => ' <-Id del usuario; Eliminado -> Name: ' . $perfil->name . ' Surname: ' . $perfil->surname . ' ' . $perfil->surname2 ,'created_at' => $timestamp, 'updated_at' => $timestamp]);
+                DB::table('logs')->insert(['tipo' => 'DELETE', 'tabla' => 'users', 'id_hechopor' => \Auth::user()->id . '<- ID ' . \Auth::user()->name . ' ' . \Auth::user()->surname . ' ' . \Auth::user()->surname2, 'id_cambiado' => $perfil->id, 'explicativo' => ' <-Id del usuario; Eliminado -> Name: ' . $perfil->name . ' Surname: ' . $perfil->surname . ' ' . $perfil->surname2, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
 
                 DB::table('users_deleted')->insert(['id' => $perfil->id, 'name' => $perfil->name, 'surname' => $perfil->surname, 'surname2' => $perfil->surname2, 'telefono' => $perfil->telefono, 'email' => $perfil->email, 'poder' => $perfil->poder, 'created_at' => $perfil->created_at, 'updated_at' => $timestamp]);
 
@@ -317,8 +327,12 @@ class UserController extends Controller {
         if ($activo == 1) {
 
             return $pdf->download('listado-usuarios-activos.pdf');
-        } else {
+        } else if ($activo == 1) {
             return $pdf->download('listado-usuarios-inactivos.pdf');
+        } else {
+            $users = DB::table('users_deleted')->get();
+            $pdf = PDF::loadView('pdf.listados', compact('users'));
+            return $pdf->download('listado-usuarios-eliminados.pdf');
         }
     }
 
@@ -328,28 +342,26 @@ class UserController extends Controller {
 
         return $pdf->download('logs.pdf');
     }
-    
-     public function pdf_ckedit($id) {
-       
-         
-          $contenido = Ckeditor::where('id', $id)->get();
+
+    public function pdf_ckedit($id) {
+
+
+        $contenido = Ckeditor::where('id', $id)->get();
 
         if (count($contenido) == 0) {
-            
+
             return redirect()->route('home')
                             ->with(['error' => 'No se ha encontrado ningun  curriculum guardado']);
-            
         } else {
-            
-        $user=User::find($id);
-        
-        $pdf_ckeditor = Ckeditor::where('id', $id)->first();
-       
-        $pdf = PDF::loadView('pdf.pdfckeditor', compact('pdf_ckeditor'));
 
-        return $pdf->download('curriculum_'. $user->name.'_'. $user->surname.'.pdf');
+            $user = User::find($id);
+
+            $pdf_ckeditor = Ckeditor::where('id', $id)->first();
+
+            $pdf = PDF::loadView('pdf.pdfckeditor', compact('pdf_ckeditor'));
+
+            return $pdf->download('curriculum_' . $user->name . '_' . $user->surname . '.pdf');
         }
-       
     }
 
     public function verlogs() {
@@ -381,6 +393,60 @@ class UserController extends Controller {
 
             return redirect()->route('home')
                             ->with(['error' => 'No puedes acceder a esta pagina']);
+        }
+    }
+
+    public function send_email($search = null) {
+
+        $user = \Auth::user();
+        if ($user->poder == "admin") {
+
+            if (empty($search)) {
+                $totusers = User::where('activo',1)->get();
+            } else {
+                $totusers = User::where('email', $search)
+                                ->where('activo', 1)->get();
+            }
+
+            return view('emails.plantilla', ['totusers' => $totusers]);
+        } else {
+            return redirect()->route('home')
+                            ->with(['error' => 'No puedes acceder a esta pagina']);
+        }
+    }
+
+    public function enviar_correo(Request $request) {
+
+
+        //validacion
+        $validate = $this->validate($request, [
+            'destinatario' => 'required',
+            'asunto' => 'required|string|max:50',
+            'contenido' => 'required|string|max:255',
+        ]);
+
+        //recoger datos
+        $destinatario = $request->input('destinatario');
+        $asunto = $request->input('asunto');
+        $contenido = $request->input('contenido');
+
+
+        $data['destinatario'] = $destinatario;
+        $data['asunto'] = $asunto;
+        $data['contenido'] = $contenido;
+
+        Mail::send('emails.contenido', $data, function($message) use($data) {
+
+            $message->to($data['destinatario'])
+                    ->subject($data['asunto']);
+        });
+
+        if (Mail::failures()) {
+            return redirect()->route('home')
+                            ->with(['error' => 'No se pudo enviar']);
+        } else {
+            return redirect()->route('home')
+                            ->with(['message' => 'Se ha enviado correctamente el correo']);
         }
     }
 

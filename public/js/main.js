@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
         if ($('#buscador #search').val() == "")
         {
         } else {
-            $(this).attr('action', url + '/activos/' + $('#buscador #search').val() + '/' + $('#buscador #select').val()+ '/' + $('#buscador #order').val());
+            $(this).attr('action', url + '/activos/' + $('#buscador #search').val() + '/' + $('#buscador #select').val() + '/' + $('#buscador #order').val());
         }
     });
 
@@ -52,9 +52,40 @@ window.addEventListener("load", function () {
         if ($('#buscadorin #searchin').val() == "")
         {
         } else {
-            $(this).attr('action', url + '/inactivos/' + $('#buscadorin #searchin').val() + '/' + $('#buscadorin #selectin').val()+ '/' + $('#buscadorin #orderin').val());
+            $(this).attr('action', url + '/inactivos/' + $('#buscadorin #searchin').val() + '/' + $('#buscadorin #selectin').val() + '/' + $('#buscadorin #orderin').val());
         }
 
     });
+
+
+    $('#familiaprofesional').unbind('click').click(function () {
+        $('#selectfamilia').show();
+        $('#familiaprofesional').hide();
+        
+        
+        //cerar el superior
+        
+        $('#familiaprofesionalsuperior').hide();
+        $('#selectfamiliasuperior').hide();
+        $('#familiaprofesionalsuperior').hide();
+    });
+    
+    
+    $('#familiaprofesionalsuperior').unbind('click').click(function () {
+        $('#selectfamiliasuperior').show();
+        $('#familiaprofesionalsuperior').hide();
+        
+        //cerrar el medio
+        $('#familiaprofesional').hide();
+         $('#selectfamilia').hide();
+        $('#familiaprofesional').hide();
+        
+        
+    });
+
+   
+ 
+
+
 });
 

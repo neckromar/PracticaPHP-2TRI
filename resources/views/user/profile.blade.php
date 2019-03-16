@@ -36,6 +36,11 @@
         @if($user->activo != '0' && \Auth::user()->id != $user->id)
         <a type="button" class="btn btn-simple btn-primary btn-lg" href=" {{route('user.send',['email' => $user->email])}}" >Enviar mensaje</a>
         @endif
+         @if(\Auth::user()->poder == 'admin'  && $user->activo == 1 )
+         
+         <a type="button" class="btn btn-simple btn-primary btn-lg" href=" {{ route('vista_correo',['email'=> $user->email]) }}" >Enviar correo</a>
+         
+        @endif
 
         @if(\Auth::user()->poder == 'admin')
         <a type="button" class="btn btn-simple btn-warning btn-lg" href=" {{route('config',['id' => $user->id])}}" >Modificar Perfil</a>
@@ -47,6 +52,7 @@
          <a type="button" class="btn btn-simple btn-warning btn-lg" href=" {{ route('users.pdf_ckedit',['id'=> $user->id]) }}" >Descargar curriculum</a>
          
         @endif
+         
         
 
         @if(\Auth::user()->poder == 'admin' || \Auth::user()->id == $user->id)

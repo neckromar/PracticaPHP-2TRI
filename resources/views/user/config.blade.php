@@ -96,6 +96,89 @@
                                     @endif
                                 </div>
                             </div>
+<!--                            <p id="familiaprofesional" >
+                                Quiere añadir una familia profesional de GRADO MEDIO, pulseme?
+                            </p>
+                             <p id="familiaprofesionalsuperior" >
+                                Quiere añadir una familia profesional de GRADO SUPERIOR, pulseme?
+                            </p>
+                            
+                         
+                            
+                            
+                            <div class="form-group row" hidden id="selectfamilia" ng-controller="myCtrl">
+                                
+                                <label for="profesional" class="col-md-4 col-form-label text-md-right">{{ __('Familia Profesional Grado Medio') }}</label>
+
+                                <div class="col-md-6">
+                                      <input name="gradomedio" hidden>
+                                      
+                                     <select name="selectgrados" ng-change="change()" ng-model="familia">
+                                        <option value="informatica">F.P. Informatica</option>
+                                        <option value="administracion">F.P. Administración y Finanzas</option>
+                                    </select>
+                                    
+                                    <select name="curso" ng-show="gradosMediosInformatica()">
+                                        <option value="asir">ASIR</option>
+                                        <option value="smr">SMR</option>
+                                    </select>
+                                    
+                                    <select name="curso" ng-show="gradosMediosAdministracion()">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            
+                            
+                            
+                             <div class="form-group row" hidden id="selectfamiliasuperior" ng-controller="myCtrl">
+                                
+                                <label for="profesional" class="col-md-4 col-form-label text-md-right">{{ __('Familia Profesional Grado Superior') }}</label>
+
+                                <div class="col-md-6">
+                                    <input name="gradosuperior" hidden>
+                                    
+                                     <select name="selectgrados" ng-change="change()" ng-model="familia">
+                                        <option value="informatica">F.P. Informatica</option>
+                                        <option value="administracion">F.P. Administración y Finanzas</option>
+                                    </select>
+                                    
+                                    <select name="curso" ng-show="gradosSuperiorInformatica()">
+                                        <option value="asir">DAW</option>
+                                        <option value="smr">DAM</option>
+                                    </select>
+                                    
+                                    <select name="curso" ng-show="gradosSuperiorAdministracion()">
+                                        <option value="1">3</option>
+                                        <option value="2">4</option>
+                                    </select>
+                                   
+                                </div>
+                            </div>
+                            
+                             <script>
+                             var app = angular.module('myApp', []);
+                                app.controller('myCtrl', function($scope) {
+                                
+                                $scope.familia;
+                             
+
+                                $scope.gradosMediosInformatica = function() {
+                                return $scope.familia == "informatica";
+                                }
+
+                                $scope.gradosMediosAdministracion = function() {
+                                return $scope.familia == "administracion";
+                                }
+
+
+
+
+                                });
+                            </script>-->
+                            
 
                             @if($perfil != null)
                             @else
